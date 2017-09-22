@@ -41,37 +41,22 @@ public class Student_interfaceTest {
      */
     @Test
     public void testShowQuizTitle() {
-        System.out.println("ShowQuizTitle");
-        Student_interface instance = new Student_interface();
-        instance.ShowQuizTitle();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        Student_interface S=new Student_interface();
+        String Expout="Quiz";
+        String result=S.ShowQuizTitle();
+        assertEquals(result,Expout);
     }
 
     /**
-     * Test of Deserialize method, of class Student_interface.
+     * Test of Deserialized method, of class Student_interface.
      */
     @Test
     public void testDeserialize() {
-        System.out.println("Deserialize");
-        Student_interface instance = new Student_interface();
-        Quiz expResult = null;
-        Quiz result = instance.Deserialize();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
-    /**
-     * Test of main method, of class Student_interface.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Student_interface.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Student_interface S1=new Student_interface();
+        String expout="Quiz";
+        Quiz result=S1.Deserialize();
+        assertEquals(result.Title,expout);
     }
-    
 }
