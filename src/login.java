@@ -24,7 +24,39 @@ public class login extends javax.swing.JFrame {
     public login() {
         initComponents();
     }
-
+    public boolean login_function(String Unm, String Ups){
+              File file=new File("Users.txt");
+              int check=0;
+       String uname=Unm;
+       String upswd=Ups;
+       try{
+       BufferedReader br = new BufferedReader(new FileReader(file));
+       for (String line = br.readLine(); line != null; line = br.readLine()) {
+        // do stuff to file here
+        String[] word= line.split(">");
+        if(word[0].equals("student") && word[1].equals(uname) && word[2].equals(upswd)){
+            this.dispose();
+            Student_interface theInterface = new Student_interface();
+            theInterface.setVisible(true);
+            check=1;
+        }
+        else if(word[0].equals("instructor") && word[1].equals(uname) && word[2].equals(upswd)){
+            this.dispose();
+            Instructor_interface theInterface = new Instructor_interface();
+            theInterface.setVisible(true);
+            check=1;
+        }
+}
+      }catch(IOException ex)
+      {
+          System.out.println("File not found" + ex);
+      } 
+       if(check==1){
+       return true;
+       }else{
+       return false;
+       }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,29 +164,7 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       File file=new File("Users.txt");
-       String uname=jTextField1.getText();
-       String upswd=jPasswordField1.getText();
-       try{
-       BufferedReader br = new BufferedReader(new FileReader(file));
-       for (String line = br.readLine(); line != null; line = br.readLine()) {
-        // do stuff to file here
-        String[] word= line.split(">");
-        if(word[0].equals("student") && word[1].equals(uname) && word[2].equals(upswd)){
-            this.dispose();
-            Student_interface theInterface = new Student_interface();
-            theInterface.setVisible(true);
-        }
-        else if(word[0].equals("instructor") && word[1].equals(uname) && word[2].equals(upswd)){
-            this.dispose();
-            Instructor_interface theInterface = new Instructor_interface();
-            theInterface.setVisible(true); 
-        }
-}
-      }catch(IOException ex)
-      {
-          System.out.println("File not found" + ex);
-      } 
+              login_function(jTextField1.getText(),jPasswordField1.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

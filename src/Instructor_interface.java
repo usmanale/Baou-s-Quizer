@@ -514,7 +514,7 @@ public class Instructor_interface extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(162, 162, 162)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 1, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -535,17 +535,10 @@ public class Instructor_interface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void MakeQuiz()
+    public boolean MakeQuiz()
     {
-        Quiz q1;
-        q1=new Quiz();
-        q1.Title=Title1;
-        q1.Description=Description1;
-        q1.Marks=Marks1;
-        q1.Questions=Questions1;
-        q1.Answers=Answers1;
-        q1.CAnswers=CAnswers1;
-        q1.QType=QType1;
+           int check=0;
+           Quiz q1=setQuizData();
               try {
          FileOutputStream fileOut =
          new FileOutputStream("quiz.ser");
@@ -554,9 +547,23 @@ public class Instructor_interface extends javax.swing.JFrame {
          out.close();
          fileOut.close();         
          System.out.printf("Serialized data is saved in quiz.ser");
+         check=1;
       }catch(IOException g) {
          g.printStackTrace();
       }
+              if(check==1){return true;}else{return false;}
+    }
+    public Quiz setQuizData(){
+                Quiz q1;
+        q1=new Quiz();
+        q1.Title=Title1;
+        q1.Description=Description1;
+        q1.Marks=Marks1;
+        q1.Questions=Questions1;
+        q1.Answers=Answers1;
+        q1.CAnswers=CAnswers1;
+        q1.QType=QType1;
+        return q1;
     }
     private void mcqbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mcqbtnActionPerformed
         // TODO add your handling code here:
